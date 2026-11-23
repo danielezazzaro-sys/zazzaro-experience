@@ -62,6 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
+    const media = step.querySelector(".experience-step__media");
+
+    if (media) {
+      media.classList.add(
+        "reveal",
+        isReverse ? "reveal--right" : "reveal--left"
+      );
+    }
+
     label?.style.setProperty("--delay", "80ms");
     title?.style.setProperty("--delay", "160ms");
     paragraph?.style.setProperty("--delay", "240ms");
@@ -103,53 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ANIMAZIONE IMMAGINI SICURA */
-
-  steps.forEach((step) => {
-    const media = step.querySelector(".experience-step__media");
-
-    if (!media || reducedMotion || !("IntersectionObserver" in window)) {
-      return;
-    }
-
-    const mediaObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.animate(
-            [
-              {
-                opacity: 0.72,
-                transform: step.classList.contains("experience-step--reverse")
-                  ? "translateX(50px)"
-                  : "translateX(-50px)",
-              },
-              {
-                opacity: 1,
-                transform: "translateX(0)",
-              },
-            ],
-            {
-              duration: 900,
-              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-              fill: "both",
-            }
-          );
-
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -7% 0px",
-      }
-    );
-
-    mediaObserver.observe(media);
-  });
+  /* Immagini e testi hanno reveal indipendenti, gestiti dallo stesso observer. */
 
   /* SEZIONE ATTIVA */
 
