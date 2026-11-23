@@ -1064,3 +1064,22 @@ ol {
     transform: none !important;
   }
 }
+
+
+/* FIX MIRATO: mostra per intero la foto della personalizzazione */
+.experience-step--personalizzazione .experience-step__media {
+  min-height: 0;
+}
+
+.experience-step--personalizzazione .experience-step__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  transform: none;
+}
+
+.experience-step--personalizzazione:hover .experience-step__media img {
+  transform: none;
+}
