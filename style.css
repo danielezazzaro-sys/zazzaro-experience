@@ -1083,3 +1083,21 @@ ol {
 .experience-step--personalizzazione:hover .experience-step__media img {
   transform: none;
 }
+
+
+/* PERSONALIZZAZIONE: mantieni testo e immagine affiancati anche nel layout tablet */
+@media (min-width: 721px) and (max-width: 1050px) {
+  .experience-step--personalizzazione {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .experience-step--personalizzazione .experience-step__media {
+    order: 2;
+    min-height: 0;
+  }
+
+  .experience-step--personalizzazione .experience-step__content {
+    order: 1;
+  }
+}
